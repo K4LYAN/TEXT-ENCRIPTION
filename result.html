@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encryption Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .response-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .response-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px auto;
+                border-radius: 20px;
+            }
+            .response-btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encryption Result</h1>
+        <p><strong>Original Plaintext:</strong> {{ plaintext }}</p>
+        <p><strong>AES Encrypted:</strong> <span id="aes-cipher">{{ aes_cipher }}</span> <button class="button" onclick="copyToClipboard('aes-cipher')">Copy</button></p>
+        <p><strong>DES Encrypted:</strong> <span id="des-cipher">{{ des_cipher }}</span> <button  class="button" onclick="copyToClipboard('des-cipher')">Copy</button></p>
+        <p><strong>RSA Encrypted:</strong> <span id="rsa-cipher">{{ rsa_cipher }}</span> <button  class="button" onclick="copyToClipboard('rsa-cipher')">Copy</button></p>
+        <form action="/" method="get">
+            <button type="submit" class="response-btn">Add Another Text</button>
+        </form>
+    </div>
+    
+    <script>
+        function copyToClipboard(elementId) {
+            var element = document.getElementById(elementId);
+            var tempInput = document.createElement("input");
+            tempInput.value = element.textContent;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Copied to clipboard: " + tempInput.value);
+        }
+    </script>
+</body>
+</html>
